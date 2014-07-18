@@ -1,3 +1,26 @@
+@Tenants = new Meteor.Collection 'tenants',
+  schema:
+    userId:
+      type: String
+    phone:
+      type: String
+    people:
+      type: Number
+    photo:
+      type: String
+    documents:
+      type: [String]
+    income:
+      type: Number
+    creditScore:
+      type: Number
+    pets:
+      type: String
+    occupation:
+      type: String
+    shortlist:
+      type: [Number]
+
 @Properties = new Meteor.Collection 'properties',
   schema:
     title:

@@ -7,3 +7,9 @@ standard-app-packages
 autopublish
 insecure
 coffeescript
+collection2
+simple-schema
+autoform
+iron-router
+underscore-string-latest
+bootstrap-3

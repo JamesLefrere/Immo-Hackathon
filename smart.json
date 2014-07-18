@@ -1,3 +1,9 @@
 {
-  "packages": {}
+  "packages": {
+    "collection2": {},
+    "autoform": {},
+    "iron-router": {},
+    "underscore-string-latest": {},
+    "bootstrap-3": {}
+  }
 }

@@ -16,8 +16,8 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.14.1",
-        "commit": "3d00239fc61944058295ded01889c071d6c1ced9"
+        "tag": "v0.15.1",
+        "commit": "723aed684ef9d16e94424cde6389b8e4a03d546e"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",

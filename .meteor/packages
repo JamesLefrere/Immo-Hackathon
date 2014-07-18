@@ -13,3 +13,5 @@ autoform
 iron-router
 underscore-string-latest
 bootstrap-3
+accounts-ui
+accounts-password

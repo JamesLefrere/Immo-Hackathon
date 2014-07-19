@@ -1,9 +1,10 @@
 <template name="home">
-  <h1>Our app</h1>
-  {{> quickButtons}}
+  <h1>Rentkit</h1>
   {{#if isTenant}}
     {{#if createdAccount}}
-      Account info goes here
+      Details go here...
+    {{else}}
+      Add in your details
     {{/if}}
   {{/if}}
   {{#if isLandlord}}

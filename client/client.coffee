@@ -6,6 +6,12 @@ Template.home.helpers
   createdAccount: ->
     Tenants.find(userId: Meteor.userId()).fetch().length > 0
 
+Template.nav.helpers
+  isTenant: ->
+    Meteor.user() && Meteor.user().username != 'Herr Landlord'
+  isLandlord: ->
+    Meteor.user() && Meteor.user().username == 'Herr Landlord'
+
 Template.shortlist.helpers
   readyForApplication: ->
 #    console.log(@)

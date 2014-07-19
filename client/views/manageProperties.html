@@ -2,7 +2,10 @@
   <h2>Manage properties</h2>
   <table class="table">
     {{#each properties}}
-      Property here
+      <tr>
+        <td align="left">{{title}}</td>
+        <td align="right"><a href="/properties/{{slug}}">Manage</a></td>
+      </tr>
     {{/each}}
   </table>
 </template>

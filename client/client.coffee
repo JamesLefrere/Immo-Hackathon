@@ -6,6 +6,6 @@ Template.home.helpers
   createdAccount: ->
     Tenants.find(userId: Meteor.userId()).fetch().length > 0
 
-Template.addLandlord.helpers
-  currentLandlord: ->
-    Landlords.findOne(userId: Meteor.userId())
+Template.manageProperties.helpers
+  properties: ->
+    Properties.find(owner: Meteor.userId())

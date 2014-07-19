@@ -41,3 +41,11 @@ Router.map ->
     template: 'bids'
     data: ->
       Applications.find(owner: Meteor.userId())
+
+  @route 'manageProperty',
+    path: 'manage-property/:_id'
+    template: 'manageProperty'
+    data: ->
+      property: Properties.findOne(_id: @.params._id)
+      visitDates: VisitDates.find(propertyId: @.params._id)
+      applications: Applications.find(propertyId: @.params._id)

@@ -9,3 +9,9 @@ Template.home.helpers
 Template.manageProperties.helpers
   properties: ->
     Properties.find(owner: Meteor.userId())
+Template.manageProperty.helpers
+  currentVisitDates: ->
+    VisitDates.findOne(propertyId: @.property._id)
+  visitDatesUpdate: ->
+    VisitDates.find(propertyId: @.property._id).fetch().length > 0 if @.property
+

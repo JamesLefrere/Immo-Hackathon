@@ -10,6 +10,9 @@
 
 <template name="layout">
   <div class="container">
+    <div class="flash-messages">
+      {{> flashMessages}}
+    </div>
     {{> loginButtons}}
     {{> yield}}
   </div>

@@ -6,23 +6,42 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   {{/autoForm}}
   <h2>Visits</h2>
-  <table class="table">
-    {{#each visits}}
+  <table class="table table-striped table-bordered">
+    <thead>
       <tr>
+        <td>Name</td>
+        <td>Date</td>
+        <td>Accept</td>
+        <td>Deny</td>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each formattedVisits}}
+      <tr class="{{statusClass}}">
         <td>{{tenantName}}</td>
-        <td>{{bid}}</td>
         <td>{{date}}</td>
         <td><a class="accept">Accept</a></td>
         <td><a class="deny">Deny</a></td>
       </tr>
     {{/each}}
+    </tbody>
   </table>
   <h2>Applications</h2>
-  <table class="table">
-    {{#each applications}}
+  <table class="table table-striped table-bordered">
+    <thead>
       <tr>
+        <td>Name</td>
+        <td>Bid</td>
+        <td>Date</td>
+        <td>Accept</td>
+        <td>Deny</td>
+      </tr>
+    </thead>
+    {{#each formattedApplications}}
+      <tr class="{{statusClass}}">
         <td>{{tenantName}}</td>
         <td>{{bid}}</td>
+        <td>{{date}}</td>
         <td><a class="accept">Accept</a></td>
         <td><a class="deny">Deny</a></td>
       </tr>

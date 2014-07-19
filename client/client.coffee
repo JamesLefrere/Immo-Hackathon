@@ -38,7 +38,7 @@ Template.singleVisit.events
       tenantId: @tenant._id
       tenantName: Meteor.user().username
       propertyId: @property._id
-      status: false
+      status: 'applyingForVisit'
     Meteor.call 'submitApplication', data, (err, res) ->
       unless err
         FlashMessages.sendSuccess 'Application submitted'
@@ -46,3 +46,33 @@ Template.singleVisit.events
         FlashMessages.sendWarning err.reason
     return
 
+Template.manageProperty.helpers
+  formattedVisits: ->
+    visits = []
+    _.each(@.visits.fetch(), (visit) ->
+      visit.date = moment(visit.date).format('DD/MM/YY')
+      switch visit.status
+        when 'visitAccepted'
+          visit.statusClass = 'success'
+        when 'visitDenied'
+          visit.statusClass = 'error'
+        else
+          visit.statusClass = 'info'
+      visits.push(visit)
+    )
+    visits
+  formattedApplications: ->
+    applications = []
+    _.each(@.applications.fetch(), (application) ->
+      switch application.status
+        when 'bidAccepted'
+          application.statusClass = 'success'
+        when 'bidDenied'
+          application.statusClass = 'warning'
+        when 'outrightDenied'
+          application.statusClass = 'error'
+        else
+          application.statusClass = 'info'
+      applications.push(application)
+    )
+    applications

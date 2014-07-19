@@ -4,10 +4,6 @@ Router.map ->
     path: "/"
     template: "home"
 
-  @route "addProperty",
-    path: "/add-property"
-    template: "addProperty"
-
 #  @route "viewProperty",
 #    path: "/property/:slug"
 #    template: "viewProperty"

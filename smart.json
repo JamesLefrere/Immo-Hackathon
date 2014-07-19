@@ -12,6 +12,18 @@
     "bootstrap-multiselect": {
       "source": "git://github.com/davidstutz/bootstrap-multiselect.git",
       "version": "0.9.4"
+    },
+    "jquery": {
+      "version": "1.9.1"
+    },
+    "modernizr": {
+      "version": "2.7.1"
+    },
+    "skrollr": {
+      "version": "0.6.21"
+    },
+    "imagesloaded": {
+      "version": "3.0.4"
     }
   }
 }

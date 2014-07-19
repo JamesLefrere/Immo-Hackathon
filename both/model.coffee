@@ -3,7 +3,7 @@
     userId:
       type: String
       autoValue: ->
-        Meteor.userId()
+        @.userId()
     phone:
       type: String
     people:
@@ -30,6 +30,10 @@
       max: 200
     is24Id:
       type: Number
+    owner:
+      type: String
+      autoValue: ->
+        @.userId()
     address:
       type: String
       max: 200

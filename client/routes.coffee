@@ -1,36 +1,42 @@
-Router.configure layoutTemplate: "layout"
+Router.configure layoutTemplate: 'layout'
+
 Router.map ->
-  @route "home",
-    path: "/"
-    template: "home"
-  @route "shortlist",
-    path: "/shortlist"
-    template: "shortlist"
+  @route 'home',
+    path: '/'
+    template: 'home'
+
+  @route 'shortlist',
+    path: '/shortlist'
+    template: 'shortlist'
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
+      properties = Properties.find(_id: $in: tenant.shortlist)
       tenant: tenant
-      properties: Properties.find(_id: $in: tenant.shortlist)
+      properties: properties
 
-  @route "visits",
-    path: "/visits"
-    template: "visits"
+  @route 'visits',
+    path: '/visits'
+    template: 'visits'
     data: ->
-      VisitDates.find()
-  @route "bids",
-    path: "/bids"
-    template: "bids"
+      tenant = Tenants.findOne(userId: Meteor.userId())
+      properties = Properties.find(_id: $in: tenant.shortlist)
+      visitDates = VisitDates.find(propertyId: $in: tenant.shortlist)
+      tenant: tenant
+      properties: properties
+      visitDates: visitDates
+
+  @route 'singleVisit',
+    path: '/visits/:_id'
     data: ->
-      Applications.find()
+      tenant = Tenants.findOne(userId: Meteor.userId())
+      property = Properties.findOne(_id: @.params._id)
+      visitDates = VisitDates.find(propertyId: @.params._id)
+      tenant: tenant
+      property: property
+      visitDates: visitDates
 
-#  @route "viewProperty",
-#    path: "/property/:slug"
-#    template: "viewProperty"
-#    data: ->
-#      slug = @params.slug
-
-#  @route "properties",
-#    path: "/property"
-#    template: "properties"
-#    data:
-#      properties: ->
-#        Properties.find()
+  @route 'bids',
+    path: '/bids'
+    template: 'bids'
+    data: ->
+      Applications.find(owner: Meteor.userId())

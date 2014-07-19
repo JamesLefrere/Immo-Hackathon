@@ -34,6 +34,9 @@ Meteor.startup ->
       address: "Andreasstraße 10, 10243 Berlin, Friedrichshain (Friedrichshain)"
       is24Id: 62514911
       owner: landlord._id
+      visitDates: [
+        new Date()
+      ]
       photos: [
         "http://picture.preview-is24.de/pic/orig04/N/103/322/875/103322875-0.jpg/ORIG/resize/400x300%3E/format/jpg?3045567103"
       ]

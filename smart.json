@@ -16,14 +16,8 @@
     "jquery": {
       "version": "latest"
     },
-    "modernizr": {
-      "version": "2.7.1"
-    },
-    "skrollr": {
-      "version": "0.6.21"
-    },
-    "imagesloaded": {
-      "version": "3.0.4"
+    "bootstrap-ios7":{
+      "version": "latest"
     }
   }
 }

@@ -58,8 +58,8 @@
   schema:
     propertyId:
       type: String
-    date:
-      type: Date
+    dates:
+      type: [Date]
 
 @Applications = new Meteor.Collection 'applications',
   schema:

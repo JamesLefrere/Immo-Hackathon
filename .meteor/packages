@@ -15,6 +15,6 @@ underscore-string-latest
 bootstrap-3
 accounts-ui
 accounts-password
-bower
 moment
-flash-messages
+blaze-layout
+toastjs

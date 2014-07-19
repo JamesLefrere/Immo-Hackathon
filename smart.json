@@ -4,26 +4,6 @@
     "autoform": {},
     "iron-router": {},
     "underscore-string-latest": {},
-    "bootstrap-3": {},
-    "bower": {},
-    "flash-messages": {}
-  },
-  "bower": {
-    "bootstrap-multiselect": {
-      "source": "git://github.com/davidstutz/bootstrap-multiselect.git",
-      "version": "0.9.4"
-    },
-    "jquery": {
-      "version": "latest"
-    },
-    "modernizr": {
-      "version": "2.7.1"
-    },
-    "skrollr": {
-      "version": "0.6.21"
-    },
-    "imagesloaded": {
-      "version": "3.0.4"
-    }
+    "bootstrap-3": {}
   }
 }

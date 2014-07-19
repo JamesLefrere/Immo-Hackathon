@@ -2,6 +2,8 @@
   schema:
     userId:
       type: String
+      autoValue: ->
+        Meteor.userId()
     phone:
       type: String
     people:

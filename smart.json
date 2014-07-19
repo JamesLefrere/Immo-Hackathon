@@ -5,5 +5,10 @@
     "iron-router": {},
     "underscore-string-latest": {},
     "bootstrap-3": {}
+  },
+  "bower": {
+    "bootstrap-ios7": {
+      "version": "latest"
+    }
   }
 }

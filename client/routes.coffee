@@ -21,8 +21,10 @@ Router.map ->
     template: 'visits'
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
-      properties = Properties.find(_id: $in: tenant.shortlist)
+      applications = Applications.find(tenantId: Meteor.userId())
+      properties = Properties.find(_id: $in: tenant.shortlist) if tenant
       tenant: tenant
+      applications: applications
       properties: properties
 
   @route 'singleVisit',
@@ -54,4 +56,3 @@ Router.map ->
       applications = Applications.find(propertyId: @.params._id)
       property: property
       applications: applications
-

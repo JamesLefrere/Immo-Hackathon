@@ -1,19 +1,15 @@
 <template name="singleVisit">
   <h1>Visit</h1>
   <h2>{{property.title}}</h2>
-  {{#autoForm id="applicationForm" type="insert" collection="Applications"}}
+  <form id="applicationForm">
     <div class="form-group">
-      <label for="visitDateId">Select date</label>
-      <select class="form-control" name="visitDateId" id="visitDateId">
+      <label for="date">Select date</label>
+      <select class="form-control" name="date" id="date">
         {{#each formattedDates}}
           <option value="{{date}}">{{humanDate}}</option>
         {{/each}}
       </select>
     </div>
-    {{> afFieldInput name="propertyId" type="hidden" value=property._id}}
-    {{> afFieldInput name="tenantId" type="hidden" value=userId}}
-    {{> afFieldInput name="tenantName" type="hidden" value=username}}
-    {{> afFieldInput name="status" type="hidden" value="false"}}
     <button type="submit" class="btn btn-primary">Submit</button>
-  {{/autoForm}}
+  </form>
 </template>

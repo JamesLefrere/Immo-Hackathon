@@ -28,4 +28,15 @@ Template.singleVisit.helpers
   userId: ->
     Meteor.userId()
   username: ->
-    Meteor.user().username
+    Meteor.user().username if Meteor.user()
+
+Template.singleVisit.events
+  'submit #applicationForm': (e, t) ->
+    e.preventDefault()
+    data
+      date: t.find('input[name="date"]').val()
+      tenantId: @tenant._id
+      tenantName: Meteor.user().username
+      propertyId: @property._id
+      status: false
+    Meteor.call('submitApplication, data')

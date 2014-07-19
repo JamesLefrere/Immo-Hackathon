@@ -5,6 +5,11 @@ Router.map ->
     path: '/'
     template: 'home'
 
+
+  @route 'my-details',
+    path: '/my-details'
+    template: 'myDetails'
+
   @route 'shortlist',
     path: '/shortlist'
     template: 'shortlist'

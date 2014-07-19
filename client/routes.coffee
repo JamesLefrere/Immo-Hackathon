@@ -53,6 +53,16 @@ Router.map ->
     template: 'manageProperty'
     data: ->
       property = Properties.findOne(_id: @.params._id)
-      applications = Applications.find(propertyId: @.params._id)
+      applications = Applications.find
+        propertyId: @.params._id
+        status: $in: ['visiting', 'bidAccepted', 'bidDenied', 'outrightDenied']
+      visits = Applications.find(
+        propertyId: @params._id
+        status: $in: ['applyingForVisit', 'visitAccepted', 'visitDenied']
+      ,
+        sort:
+          date: -1
+      )
       property: property
       applications: applications
+      visits: visits

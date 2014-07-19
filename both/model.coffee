@@ -68,7 +68,7 @@
     tenantName:
       type: String
     status:
-      type: Boolean
+      type: String
     bid:
       type: Number
       optional: true

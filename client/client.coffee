@@ -22,7 +22,7 @@ Template.singleVisit.helpers
       _.each @property.visitDates, (date) ->
         dates.push
           humanDate: moment(date).format('DD/MM/YY hh:mm')
-          date: date
+          date: moment(date).format('YYYY MM DD hh:mm')
         return
       dates
   userId: ->
@@ -39,4 +39,10 @@ Template.singleVisit.events
       tenantName: Meteor.user().username
       propertyId: @property._id
       status: false
-    Meteor.call('submitApplication', data)
+    Meteor.call 'submitApplication', data, (err, res) ->
+      unless err
+        FlashMessages.sendSuccess 'Application submitted'
+      else
+        FlashMessages.sendWarning err.reason
+    return
+

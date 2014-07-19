@@ -5,10 +5,19 @@
     {{> afQuickField name="visitDates"}}
     <button type="submit" class="btn btn-primary">Submit</button>
   {{/autoForm}}
+  <h2>Visits</h2>
+  <table class="table">
+    {{#each visits}}
+      <tr>
+        <td>{{tenantName}}</td>
+        <td>{{bid}}</td>
+        <td>{{date}}</td>
+        <td><a class="accept">Accept</a></td>
+        <td><a class="deny">Deny</a></td>
+      </tr>
+    {{/each}}
+  </table>
   <h2>Applications</h2>
-  {{#each tenants}}
-  {{name}}
-  {{/each}}
   <table class="table">
     {{#each applications}}
       <tr>

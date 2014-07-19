@@ -1,6 +1,14 @@
 Meteor.methods
   'submitApplication': (data) ->
-    Applications.insert(data)
+    existing = Applications.findOne
+      propertyId: data.propertyId
+      tenantId: data.tenantId
+    application = Applications.insert(data)
+    if existing
+      Applications.remove(existing)
+      throw new Meteor.Error(200, 'New date selected')
+    else
+      application
 
 Meteor.startup ->
   if !Meteor.users.find(username: 'Herr Landlord').fetch().length > 0

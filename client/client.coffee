@@ -41,9 +41,9 @@ Template.singleVisit.events
       status: 'applyingForVisit'
     Meteor.call 'submitApplication', data, (err, res) ->
       unless err
-        FlashMessages.sendSuccess 'Application submitted'
+        Toast.success 'Application submitted'
       else
-        FlashMessages.sendWarning err.reason
+        Toast.warning err.reason
     return
 
 Template.manageProperty.helpers
@@ -55,7 +55,7 @@ Template.manageProperty.helpers
         when 'visitAccepted'
           visit.statusClass = 'success'
         when 'visitDenied'
-          visit.statusClass = 'error'
+          visit.statusClass = 'danger'
         else
           visit.statusClass = 'info'
       visits.push(visit)
@@ -67,12 +67,52 @@ Template.manageProperty.helpers
       switch application.status
         when 'bidAccepted'
           application.statusClass = 'success'
-        when 'bidDenied'
+        when 'bidLow'
           application.statusClass = 'warning'
-        when 'outrightDenied'
-          application.statusClass = 'error'
+        when 'bidDenied'
+          application.statusClass = 'danger'
         else
           application.statusClass = 'info'
       applications.push(application)
     )
     applications
+
+Template.manageProperty.events
+  'click .accept-visit': (e, t) ->
+    Meteor.call 'acceptVisit', @, (err, res) ->
+      unless err
+        Toast.success 'Visit accepted'
+      else
+        Toast.warning err.reason
+    return
+  'click .deny-visit': (e, t) ->
+    Meteor.call 'denyVisit', @, (err, res) ->
+      unless err
+        Toast.success 'Visit denied'
+      else
+        Toast.warning err.reason
+    return
+  'click .accept-application': (e, t) ->
+    Meteor.call 'acceptApplication', @, (err, res) ->
+      unless err
+        Toast.success 'Application accepted'
+      else
+        Toast.warning err.reason
+    return
+  'click .deny-application': (e, t) ->
+    Meteor.call 'denyApplication', @, (err, res) ->
+      unless err
+        Toast.success 'Application denied'
+      else
+        Toast.warning err.reason
+    return
+
+Template.bids.events
+  'submit .bid-form': (e, t) ->
+    e.preventDefault()
+    @.bid = $('#bidAmount-' + @._id).val()
+    Meteor.call 'submitBid', @, (err, res) ->
+      unless err
+        Toast.success 'Bid submitted'
+      else
+        Toast.warning err.reason

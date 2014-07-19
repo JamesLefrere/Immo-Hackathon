@@ -1,0 +1,17 @@
+<template name="singleVisit">
+  <h1>Visit</h1>
+  <h2>{{property.title}}</h2>
+  {{#each visitDates}}
+    <div class="form-group">
+      <label>Select dates</label>
+      <div class="input-group">
+        <select id="date" name="date">
+        {{#each formattedDates}}
+          <option value="{{dateObject}}">{{humanDate}}</option>
+        {{/each}}
+        </select>
+      </div>
+    </div>
+  {{/each}}
+  <button type="submit" class="btn btn-primary submit">Submit</button>
+</template>

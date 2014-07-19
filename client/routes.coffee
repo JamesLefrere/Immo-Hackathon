@@ -11,8 +11,10 @@ Router.map ->
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
       properties = Properties.find(_id: $in: tenant.shortlist)
+      applications = Applications.find(owner: Meteor.userId())
       tenant: tenant
       properties: properties
+      applications: applications
 
   @route 'visits',
     path: '/visits'

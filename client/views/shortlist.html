@@ -2,5 +2,8 @@
   <h1>Shortlist</h1>
   {{#each properties}}
     {{title}}
+    {{#if readyForApplication}}
+      <a href="/visits/{{_id}}">Schedule a visit</a>
+    {{/if}}
   {{/each}}
 </template>

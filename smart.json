@@ -14,7 +14,7 @@
       "version": "0.9.4"
     },
     "jquery": {
-      "version": "1.9.1"
+      "version": "latest"
     },
     "modernizr": {
       "version": "2.7.1"

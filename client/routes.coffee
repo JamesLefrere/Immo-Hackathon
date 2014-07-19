@@ -40,7 +40,10 @@ Router.map ->
     path: '/bids'
     template: 'bids'
     data: ->
-      Applications.find(owner: Meteor.userId())
+      tenant = Tenants.findOne(userId: Meteor.userId())
+      applications = Applications.find(tenantId: tenant._id) if tenant
+      tenant: tenant
+      applications: applications
 
   @route 'manageProperties',
     path: 'manage-properties'
@@ -55,7 +58,7 @@ Router.map ->
       property = Properties.findOne(_id: @.params._id)
       applications = Applications.find
         propertyId: @.params._id
-        status: $in: ['visiting', 'bidAccepted', 'bidDenied', 'outrightDenied']
+        status: $in: ['visiting', 'bidAccepted', 'bidLow', 'denied']
       visits = Applications.find(
         propertyId: @params._id
         status: $in: ['applyingForVisit', 'visitAccepted', 'visitDenied']

@@ -9,6 +9,43 @@ Meteor.methods
       throw new Meteor.Error(200, 'New date selected')
     else
       application
+  'submitBid': (data) ->
+    existing = Applications.findOne
+      propertyId: data.propertyId
+      tenantId: data.tenantId
+    application = Applications.update(data._id,
+      $set:
+        bid: data.bid
+    )
+    if !existing
+      throw new Meteor.Error(404, 'Application not found')
+    else
+      application
+  'acceptVisit': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'visitAccepted'
+    )
+  'denyVisit': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'visitDenied'
+    )
+  'acceptApplication': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'bidAccepted'
+    )
+  'denyBid': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'bidLow'
+    )
+  'denyApplication': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'denied'
+    )
 
 Meteor.startup ->
   if !Meteor.users.find(username: 'Herr Landlord').fetch().length > 0

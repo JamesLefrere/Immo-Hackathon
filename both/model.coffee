@@ -2,26 +2,36 @@
   schema:
     userId:
       type: String
-      autoValue: ->
-        @.userId()
+      optional: true
+#      autoValue: ->
+#        @.userId()
     phone:
       type: String
+      optional: true
     people:
       type: Number
+      optional: true
     photo:
       type: String
+      optional: true
     documents:
       type: [String]
+      optional: true
     income:
       type: Number
+      optional: true
     creditScore:
       type: Number
+      optional: true
     pets:
       type: String
+      optional: true
     occupation:
       type: String
+      optional: true
     shortlist:
-      type: [Number]
+      type: [String]
+      optional: true
 
 @Properties = new Meteor.Collection 'properties',
   schema:
@@ -32,8 +42,8 @@
       type: Number
     owner:
       type: String
-      autoValue: ->
-        @.userId()
+#      autoValue: ->
+#        @.userId()
     address:
       type: String
       max: 200

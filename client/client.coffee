@@ -21,3 +21,17 @@ Template.manageProperty.helpers
   visitDatesUpdate: ->
     VisitDates.find(propertyId: @.property._id).fetch().length > 0 if @.property
 
+Template.singleVisit.helpers
+  formattedDates: ->
+    dates = []
+    _.each @dates, (date) ->
+      dates.push
+        humanDate: moment(date).format('DD/MM/YY hh:mm')
+        dateObject: date
+      return
+    dates
+
+Template.singleVisit.events
+  'click .submit': (e, t) ->
+    console.log(e)
+    console.log(t)

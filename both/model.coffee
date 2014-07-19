@@ -63,6 +63,8 @@
       type: String
     tenantId:
       type: String
+    date:
+      type: Date
     tenantName:
       type: String
     status:

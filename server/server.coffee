@@ -30,7 +30,7 @@ Meteor.startup ->
       email: 'jane@example.com'
   if !Properties.find(is24Id: 62514911).fetch().length > 0
     landlord = Meteor.users.findOne(username: 'Herr Landlord')
-    Properties.insert
+    property = Properties.insert
       address: "Andreasstraße 10, 10243 Berlin, Friedrichshain (Friedrichshain)"
       is24Id: 62514911
       owner: landlord._id
@@ -42,3 +42,16 @@ Meteor.startup ->
       ]
       slug: "test-is24-att-wohnung-miete-trustworthy"
       title: "Test-IS24-ATT: Wohnung Miete (trustworthy)"
+    user = Meteor.users.findOne(username: 'Jane')._id
+    Tenants.insert
+      userId: user
+      phone: '999'
+      people: 1
+      photo: 'http://images.forbes.com/media/lists/11/2008/34AH.jpg'
+      documents: [
+        'Example 1', 'Example 2'
+      ]
+      income: 2500
+      creditScore: 3
+      occupation: 'Developer'
+      shortlist: [ property ]

@@ -11,8 +11,7 @@
       <tr>
         <td>Name</td>
         <td>Date</td>
-        <td>Accept</td>
-        <td>Deny</td>
+        <td>Actions</td>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +19,11 @@
       <tr class="{{statusClass}}">
         <td>{{tenantName}}</td>
         <td>{{date}}</td>
-        <td><a class="accept">Accept</a></td>
-        <td><a class="deny">Deny</a></td>
+        <td>
+          <button type="button" class="btn btn-success btn-s btn-block accept-visit">Accept</button>
+          <button type="button" class="btn btn-danger btn-s btn-block deny-visit">Deny</button>
+          <button type="button" class="btn btn-default btn-s btn-block set-visiting">Visiting</button>
+        </td>
       </tr>
     {{/each}}
     </tbody>
@@ -32,19 +34,21 @@
       <tr>
         <td>Name</td>
         <td>Bid</td>
-        <td>Date</td>
-        <td>Accept</td>
-        <td>Deny</td>
+        <td>Actions</td>
       </tr>
     </thead>
+    <tbody>
     {{#each formattedApplications}}
       <tr class="{{statusClass}}">
-        <td>{{tenantName}}</td>
+        <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a></td>
         <td>{{bid}}</td>
-        <td>{{date}}</td>
-        <td><a class="accept">Accept</a></td>
-        <td><a class="deny">Deny</a></td>
+        <td>
+          <button type="button" class="btn btn-success btn-s btn-block accept-application">Accept</button>
+          <button type="button" class="btn btn-warning btn-s btn-block deny-bid">Too low</button>
+          <button type="button" class="btn btn-danger btn-s btn-block deny-application">Deny</button>
+        </td>
       </tr>
     {{/each}}
+    </tbody>
   </table>
 </template>

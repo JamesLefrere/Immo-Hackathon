@@ -1,3 +1,13 @@
 <template name="bids">
   <h1>Bids</h1>
+  {{#each applications}}
+    Status: {{status}}<br>
+    Date: {{date}}
+    PropertyId: {{propertyId}}
+    <form class="bid-form">
+      <label for="bidAmount-{{_id}}"></label>
+      <input type="number" name="bidAmount" id="bidAmount-{{_id}}" class="bid-amount" value="{{bid}}" />
+      <button type="submit" class="btn btn-primary bid-submit">Bid</button>
+    </form>
+  {{/each}}
 </template>

@@ -23,15 +23,6 @@
     shortlist:
       type: [Number]
 
-@Landlords = new Meteor.Collection 'landlords',
-  schema:
-    userId:
-      type: String
-      autoValue: ->
-        Meteor.userId()
-    properties:
-      type: [String]
-
 @Properties = new Meteor.Collection 'properties',
   schema:
     title:

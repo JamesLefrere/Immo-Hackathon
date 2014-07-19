@@ -1,3 +1,19 @@
 <template name="visits">
   <h1>Visits</h1>
+  <h2>Applications</h2>
+  <table class="table">
+    {{#each applications}}
+      <tr>
+        <td>applications go here</td>
+      </tr>
+    {{/each}}
+  </table>
+  <h2>Scheduled visits</h2>
+  <table class="table">
+    {{#each visits}}
+    <tr>
+      <td>visits go here</td>
+    </tr>
+    {{/each}}
+  </table>
 </template>

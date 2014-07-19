@@ -4,6 +4,13 @@
     "autoform": {},
     "iron-router": {},
     "underscore-string-latest": {},
-    "bootstrap-3": {}
+    "bootstrap-3": {},
+    "bower": {}
+  },
+  "bower": {
+    "bootstrap-multiselect": {
+      "source": "git://github.com/davidstutz/bootstrap-multiselect.git",
+      "version": "0.9.4"
+    }
   }
 }

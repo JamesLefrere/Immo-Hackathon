@@ -1,3 +1,3 @@
 Template.home.helpers
   isTenant: ->
-    Meteor.user().username != 'Herr Landlord'
+    Meteor.user() && Meteor.user().username != 'Herr Landlord'

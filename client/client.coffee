@@ -33,10 +33,10 @@ Template.singleVisit.helpers
 Template.singleVisit.events
   'submit #applicationForm': (e, t) ->
     e.preventDefault()
-    data
-      date: t.find('input[name="date"]').val()
+    data =
+      date: new Date($('#date').val())
       tenantId: @tenant._id
       tenantName: Meteor.user().username
       propertyId: @property._id
       status: false
-    Meteor.call('submitApplication, data')
+    Meteor.call('submitApplication', data)

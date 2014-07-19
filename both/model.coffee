@@ -49,25 +49,24 @@
       max: 200
     photos:
       type: [String]
-    slug:
-      type: String
-      autoValue: ->
-        _.slugify(this.siblingField('title').value)
-
-@VisitDates = new Meteor.Collection 'visitDates',
-  schema:
-    propertyId:
-      type: String
-    dates:
+    visitDates:
       type: [Date]
+      optional: true
+#    slug:
+#      type: String
+#      autoValue: ->
+#        _.slugify(this.siblingField('title').value)
 
 @Applications = new Meteor.Collection 'applications',
   schema:
-    visitDateId:
+    propertyId:
       type: String
     tenantId:
+      type: String
+    tenantName:
       type: String
     status:
       type: Boolean
     bid:
       type: Number
+      optional: true

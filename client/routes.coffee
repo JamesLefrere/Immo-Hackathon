@@ -27,6 +27,7 @@ Router.map ->
 
   @route 'singleVisit',
     path: '/visits/:_id'
+    template: 'singleVisit'
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
       property = Properties.findOne(_id: @.params._id)

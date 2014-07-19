@@ -10,7 +10,7 @@ Router.map ->
     template: 'shortlist'
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
-      properties = Properties.find(_id: $in: tenant.shortlist)
+      properties = Properties.find(_id: $in: tenant.shortlist) if tenant
       applications = Applications.find(owner: Meteor.userId())
       tenant: tenant
       properties: properties
@@ -22,10 +22,8 @@ Router.map ->
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
       properties = Properties.find(_id: $in: tenant.shortlist)
-      visitDates = VisitDates.find(propertyId: $in: tenant.shortlist)
       tenant: tenant
       properties: properties
-      visitDates: visitDates
 
   @route 'singleVisit',
     path: '/visits/:_id'
@@ -33,10 +31,8 @@ Router.map ->
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
       property = Properties.findOne(_id: @.params._id)
-      visitDates = VisitDates.find(propertyId: @.params._id)
       tenant: tenant
       property: property
-      visitDates: visitDates
 
   @route 'bids',
     path: '/bids'
@@ -44,10 +40,18 @@ Router.map ->
     data: ->
       Applications.find(owner: Meteor.userId())
 
+  @route 'manageProperties',
+    path: 'manage-properties'
+    template: 'manageProperties'
+    data: ->
+      properties: Properties.find(owner: Meteor.userId())
+
   @route 'manageProperty',
     path: 'manage-property/:_id'
     template: 'manageProperty'
     data: ->
-      property: Properties.findOne(_id: @.params._id)
-      visitDates: VisitDates.find(propertyId: @.params._id)
-      applications: Applications.find(propertyId: @.params._id)
+      property = Properties.findOne(_id: @.params._id)
+      applications = Applications.find(propertyId: @.params._id)
+      property: property
+      applications: applications
+

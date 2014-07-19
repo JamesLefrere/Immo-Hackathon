@@ -6,32 +6,26 @@ Template.home.helpers
   createdAccount: ->
     Tenants.find(userId: Meteor.userId()).fetch().length > 0
 
-Template.manageProperties.helpers
-  properties: ->
-    Properties.find(owner: Meteor.userId())
-
 Template.shortlist.helpers
   readyForApplication: ->
 #    console.log(@)
     true #hax
 
-Template.manageProperty.helpers
-  currentVisitDates: ->
-    VisitDates.findOne(propertyId: @.property._id)
-  visitDatesUpdate: ->
-    VisitDates.find(propertyId: @.property._id).fetch().length > 0 if @.property
+#Template.manageProperty.helpers
+#  currentVisitDates: ->
+#    VisitDates.findOne(propertyId: @.property._id)
 
 Template.singleVisit.helpers
   formattedDates: ->
     dates = []
-    _.each @dates, (date) ->
-      dates.push
-        humanDate: moment(date).format('DD/MM/YY hh:mm')
-        dateObject: date
-      return
-    dates
-
-Template.singleVisit.events
-  'click .submit': (e, t) ->
-    console.log(e)
-    console.log(t)
+    if @property
+      _.each @property.visitDates, (date) ->
+        dates.push
+          humanDate: moment(date).format('DD/MM/YY hh:mm')
+          date: date
+        return
+      dates
+  userId: ->
+    Meteor.userId()
+  username: ->
+    Meteor.user().username

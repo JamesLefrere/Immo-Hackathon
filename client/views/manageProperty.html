@@ -1,19 +1,22 @@
 <template name="manageProperty">
   <h1>Manage property</h1>
   <h2>{{property.title}}</h2>
-  {{#if visitDatesUpdate}}
-    {{#autoForm collection="VisitDates" id="addVisitDate" doc=currentVisitDates type="update"}}
-  update
-      {{> afQuickField name="propertyId" value=property._id}}
-      {{> afQuickField name="dates"}}
-      <button type="submit" class="btn btn-primary">Submit</button>
-    {{/autoForm}}
-  {{else}}
-    {{#autoForm collection="VisitDates" id="addVisitDate" type="insert"}}
-  insert
-      {{> afQuickField name="propertyId" value=property._id}}
-      {{> afQuickField name="dates"}}
-      <button type="submit" class="btn btn-primary">Submit</button>
-    {{/autoForm}}
-  {{/if}}
+  {{#autoForm collection="Properties" id="manageProperty" doc=property type="update"}}
+    {{> afQuickField name="visitDates"}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  {{/autoForm}}
+  <h2>Applications</h2>
+  {{#each tenants}}
+  {{name}}
+  {{/each}}
+  <table class="table">
+    {{#each applications}}
+      <tr>
+        <td>{{tenantName}}</td>
+        <td>{{bid}}</td>
+        <td><a class="accept">Accept</a></td>
+        <td><a class="deny">Deny</a></td>
+      </tr>
+    {{/each}}
+  </table>
 </template>

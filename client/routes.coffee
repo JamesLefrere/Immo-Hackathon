@@ -7,7 +7,10 @@ Router.map ->
     path: "/shortlist"
     template: "shortlist"
     data: ->
-      Tenants.findOne(userId: Meteor.userId())
+      tenant = Tenants.findOne(userId: Meteor.userId())
+      tenant: tenant
+      properties: Properties.find(_id: $in: tenant.shortlist)
+
   @route "visits",
     path: "/visits"
     template: "visits"

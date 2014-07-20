@@ -6,7 +6,8 @@
     "underscore-string-latest": {},
     "bootstrap-3": {},
     "collectionFS": {},
-    "cfs-s3": {}
+    "cfs-s3": {},
+    "stellar": {}
   },
   "bower": {
     "bootstrap-ios7": {

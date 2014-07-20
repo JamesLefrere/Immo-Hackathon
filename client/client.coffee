@@ -138,6 +138,8 @@ Template.bids.helpers
     applications = []
     tenant = @.tenant
     _.each(@.applications.fetch(), (application) ->
+      property = Properties.findOne(application.propertyId)
+      application.bid = property.coldRent if !application.bid
       application.date = moment(application.date).format('DD/MM/YY hh:mm')
       application.property = Properties.findOne(application.propertyId)
       switch application.status

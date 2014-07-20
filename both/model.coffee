@@ -52,6 +52,9 @@
     visitDates:
       type: [Date]
       optional: true
+    coldRent:
+      type: Number
+
 #    slug:
 #      type: String
 #      autoValue: ->

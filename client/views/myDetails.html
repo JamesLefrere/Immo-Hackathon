@@ -1,4 +1,19 @@
 <template name="myDetails">
   <h1>My Details</h1>
-  Form goes here
+  {{#autoForm collection="Tenants" id="addTenant" type="update" doc=tenant}}
+    {{> afQuickField name="phone"}}
+    {{> afQuickField name="pets"}}
+    {{> afQuickField name="people"}}
+    {{> afQuickField name="documents"}}
+    {{> afQuickField name="income"}}
+    {{> afQuickField name="creditScore"}}
+    <div class="form-group">
+      <label for="photoWidget">Photo</label>
+      <input type="file" name="photoWidget" id="photoWidget" class="form-control" />
+    </div>
+    {{> afQuickField name="shortlist"}}
+    {{> afQuickField name="userId" type="hidden"}}
+    {{> afQuickField name="photo" id="photo" type="hidden"}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  {{/autoForm}}
 </template>

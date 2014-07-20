@@ -1,9 +1,16 @@
 <template name="singleVisit">
   <h1>Visit</h1>
   <h2>{{property.title}}</h2>
+  {{#if application.date}}
+
+  {{/if}}
   <form id="applicationForm">
     <div class="form-group">
+      {{#if application.date}}
+      <label for="date">Change date</label>
+      {{else}}
       <label for="date">Select date</label>
+      {{/if}}
       <select class="form-control" name="date" id="date">
         {{#each formattedDates}}
           <option value="{{date}}">{{humanDate}}</option>

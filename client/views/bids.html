@@ -1,13 +1,36 @@
 <template name="bids">
+  <style>
+    .bid-wrapper {
+      text-align: center;
+      width: 100%;
+    }
+    .bid-amount {
+      font-size: 2em;
+      display: inline-block;
+      width: 40%;
+      height: auto;
+      text-align: center;
+    }
+    .plus {
+      float: right;
+    }
+    .minus {
+      float: left;
+    }
+  </style>
   <h1>Bids</h1>
   {{#each applications}}
     Status: {{status}}<br>
-    Date: {{date}}
-    PropertyId: {{propertyId}}
-    <form class="bid-form">
-      <label for="bidAmount-{{_id}}"></label>
-      <input type="number" name="bidAmount" id="bidAmount-{{_id}}" class="bid-amount" value="{{bid}}" />
-      <button type="submit" class="btn btn-primary bid-submit">Bid</button>
-    </form>
+    Date: {{date}}<br>
+    PropertyId: {{propertyId}}<br>
+  <hr>
+  <form class="bid-form">
+    <label for="bidAmount-{{_id}}">Bid amount</label>
+    <div class="bid-wrapper">
+      <button class="btn btn-primary btn-lg minus">-10</button>
+      <input type="number" name="bidAmount" id="bidAmount-{{_id}}" class="bid-amount form-control" step="10" min="100" value="{{bid}}" />
+      <button class="btn btn-success btn-lg plus">+10</button>
+    </div>
+  </form>
   {{/each}}
 </template>

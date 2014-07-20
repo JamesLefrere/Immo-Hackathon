@@ -1,0 +1,10 @@
+body {
+    background: url('/img/back2.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.navbar-default {
+	background: rgba(248, 248, 248, 0.7) !important;
+}

@@ -122,3 +122,7 @@ Template.bids.events
         Toast.success 'Bid submitted'
       else
         Toast.warning err.reason
+
+Template.shortlist.rendered = ->
+  #$('#element').attr('data-stellar-ratio', 1.1);
+  $.stellar();

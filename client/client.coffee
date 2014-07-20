@@ -193,6 +193,13 @@ Template.myDetails.events
       return
     return
 
+Template.shortlist.helpers
+  stellar: ->
+    photos = []
+    _.each @photos, (photo) ->
+      photos.push src: photo
+    photos
+
 Template.shortlist.rendered = ->
   #$('#element').attr('data-stellar-ratio', 1.1);
   $.stellar();

@@ -54,7 +54,12 @@
       optional: true
     coldRent:
       type: Number
-
+    nebenkosten:
+      type: Number
+    description:
+      type: String
+      optional: true
+      max: 4000
 #    slug:
 #      type: String
 #      autoValue: ->

@@ -9,7 +9,7 @@
       "bootstrap-3": {},
       "collectionFS": {},
       "cfs-s3": {},
-      "jquery-waypoints2": {}
+      "stellar": {}
     },
     "packages": {
       "collection2": {
@@ -47,10 +47,10 @@
         "tag": "v0.0.29",
         "commit": "97d3c544165c766115f2b91a6aaca54a7438a558"
       },
-      "jquery-waypoints2": {
-        "git": "https://github.com/peerlibrary/meteor-jquery-waypoints2.git",
-        "tag": "v2.0.5-1",
-        "commit": "3e6d9ea65ec8dfaf1341a0f8d225c641e0432f01"
+      "stellar": {
+        "git": "https://github.com/noorderstorm/meteor-stellar.git",
+        "tag": "v0.1.0",
+        "commit": "1ca2f68e0cca5967a6f88545cea12055c9fc2465"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",

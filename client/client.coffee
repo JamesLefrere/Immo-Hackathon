@@ -138,6 +138,8 @@ Template.bids.helpers
     applications = []
     tenant = @.tenant
     _.each(@.applications.fetch(), (application) ->
+      property = Properties.findOne(application.propertyId)
+      application.bid = property.coldRent if !application.bid
       application.date = moment(application.date).format('DD/MM/YY hh:mm')
       application.property = Properties.findOne(application.propertyId)
       switch application.status
@@ -190,6 +192,13 @@ Template.myDetails.events
         return
       return
     return
+
+Template.shortlist.helpers
+  stellar: ->
+    photos = []
+    _.each @photos, (photo) ->
+      photos.push src: photo
+    photos
 
 Template.shortlist.rendered = ->
   #$('#element').attr('data-stellar-ratio', 1.1);

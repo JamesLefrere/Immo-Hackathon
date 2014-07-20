@@ -7,7 +7,7 @@
     "bootstrap-3": {},
     "collectionFS": {},
     "cfs-s3": {},
-    "jquery-waypoints2": {}
+    "stellar": {}
   },
   "bower": {
     "bootstrap-ios7": {

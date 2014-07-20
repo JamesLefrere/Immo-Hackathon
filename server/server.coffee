@@ -54,10 +54,39 @@ Meteor.methods
 
 Meteor.startup ->
   if !Meteor.users.find(username: 'Herr Landlord').fetch().length > 0
-    Accounts.createUser
+    landlord = Accounts.createUser
       username: 'Herr Landlord'
       password: 'test'
       email: 'landlord@example.com'
+    if !Properties.find(is24Id: 62514911).fetch().length > 0
+      Properties.insert
+        address: 'Linienstraße 216/217, 10119 Berlin, Mitte (Mitte)'
+        is24Id: 74682602
+        owner: landlord
+        coldRent: 1975
+        nebenkosten: 300
+        visitDates: [
+          new Date()
+        ]
+        photos: [
+          '/img/bcg_slide-1/jpg',
+          '/img/bcg_slide-2/jpg',
+          '/img/bcg_slide-3/jpg',
+          '/img/bcg_slide-4/jpg'
+        ]
+        slug: _.slugify('Apartment mit Dachterasse im Scheunenviertel | ERSTBEZUG')
+        title: 'Apartment mit Dachterasse im Scheunenviertel | ERSTBEZUG'
+        description: '<p>3 Rooms, 136.55 m², 2nd floor</p>
+        <p>1.975 EUR (1975 base + 300 NK)</p>
+        <p>LUXURIÖSER NEUBAU aus dem Jahr 2012</p>
+        <ul>
+          <li>Eingangs- und Wartehalle</li>
+          <li>begrünter Hof mit Kinderspielplatz</li>
+          <li>Briefkästen einzeln, jeweils an der Wohnungstür</li>
+          <li>besonderes Augenmerk auf den Sicherheitsaspekt (geschlossene Tore zum Hof; Wohnungstür mit Metallkern und 3-fach Schließmechanismus)</li>
+          <li>Aufzug</li>
+          <li>Tiefgaragenstellplatz für 150 EUR monatlich inklusive</li>
+        </ul>'
   if !Meteor.users.find(username: 'Alice').fetch().length > 0
     Accounts.createUser
       username: 'Alice'
@@ -78,43 +107,12 @@ Meteor.startup ->
       username: 'Jane'
       password: 'test'
       email: 'jane@example.com'
-  if !Properties.find(is24Id: 62514911).fetch().length > 0
-    landlord = Meteor.users.findOne(username: 'Herr Landlord')
-    property = Properties.insert
-      address: "Andreasstraße 10, 10243 Berlin, Friedrichshain (Friedrichshain)"
-      is24Id: 62514911
-      owner: landlord._id
-      visitDates: [
-        new Date()
-      ]
-      photos: [
-        "http://picture.preview-is24.de/pic/orig04/N/103/322/875/103322875-0.jpg/ORIG/resize/400x300%3E/format/jpg?3045567103"
-      ]
-      slug: "test-is24-att-wohnung-miete-trustworthy"
-      title: "Test-IS24-ATT: Wohnung Miete (trustworthy)"
-    jane = Meteor.users.findOne(username: 'Jane')._id
-    Tenants.insert
-      userId: jane
-      phone: '999'
-      people: 1
-      photo: 'http://images.forbes.com/media/lists/11/2008/34AH.jpg'
-      documents: [
-        'Example 1', 'Example 2'
-      ]
-      income: 2500
-      creditScore: 3
-      occupation: 'Developer'
-      shortlist: [ property ]
-    bob = Meteor.users.findOne(username: 'Bob')._id
-    Tenants.insert
-      userId: bob
-      phone: '92673299'
-      people: 2
-      photo: 'http://images.forbes.com/media/lists/11/2008/34AH.jpg'
-      documents: [
-        'Example 1', 'Example 2'
-      ]
-      income: 2000
-      creditScore: 4
-      occupation: 'Builder'
-      shortlist: [ property ]
+
+Accounts.onCreateUser (options, user) ->
+  return if (user.username == 'Herr Landlord')
+  properties = Properties.find().fetch()
+  propertyIds = _.pluck(properties, '_id').join(',')
+  Tenants.insert
+    userId: user._id
+    shortlist: [ propertyIds ]
+  return user

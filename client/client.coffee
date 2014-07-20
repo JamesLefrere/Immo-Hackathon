@@ -147,6 +147,9 @@ Template.bids.helpers
       application.date = moment(application.date).format('DD/MM/YY hh:mm')
       application.property = Properties.findOne(application.propertyId)
       switch application.status
+        when 'visitAccepted'
+          application.statusClass = 'info'
+          application.status = 'Visiting'
         when 'bidAccepted'
           application.statusClass = 'success'
           application.status = 'Bid accepted'

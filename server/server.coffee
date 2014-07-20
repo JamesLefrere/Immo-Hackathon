@@ -46,6 +46,11 @@ Meteor.methods
       $set:
         status: 'denied'
     )
+  'setVisiting': (data) ->
+    Applications.update(data._id,
+      $set:
+        status: 'visiting'
+    )
 
 Meteor.startup ->
   if !Meteor.users.find(username: 'Herr Landlord').fetch().length > 0
@@ -87,9 +92,9 @@ Meteor.startup ->
       ]
       slug: "test-is24-att-wohnung-miete-trustworthy"
       title: "Test-IS24-ATT: Wohnung Miete (trustworthy)"
-    user = Meteor.users.findOne(username: 'Jane')._id
+    jane = Meteor.users.findOne(username: 'Jane')._id
     Tenants.insert
-      userId: user
+      userId: jane
       phone: '999'
       people: 1
       photo: 'http://images.forbes.com/media/lists/11/2008/34AH.jpg'
@@ -99,4 +104,17 @@ Meteor.startup ->
       income: 2500
       creditScore: 3
       occupation: 'Developer'
+      shortlist: [ property ]
+    bob = Meteor.users.findOne(username: 'Bob')._id
+    Tenants.insert
+      userId: bob
+      phone: '92673299'
+      people: 2
+      photo: 'http://images.forbes.com/media/lists/11/2008/34AH.jpg'
+      documents: [
+        'Example 1', 'Example 2'
+      ]
+      income: 2000
+      creditScore: 4
+      occupation: 'Builder'
       shortlist: [ property ]

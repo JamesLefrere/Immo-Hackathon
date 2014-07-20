@@ -19,4 +19,6 @@ moment
 blaze-layout
 toastjs
 bower
-stellar
+collectionFS
+cfs-s3
+cfs-gridfs

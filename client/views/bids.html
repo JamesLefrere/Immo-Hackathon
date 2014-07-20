@@ -1,13 +1,56 @@
 <template name="bids">
+  <style>
+    .bid-wrapper {
+      text-align: center;
+      width: 100%;
+    }
+    .bid-amount {
+      font-size: 2em;
+      display: inline-block;
+      width: 40%;
+      height: auto;
+      text-align: center;
+    }
+    .plus {
+      float: right;
+    }
+    .minus {
+      float: left;
+    }
+    .is-me {
+      font-weight: bold
+    }
+  </style>
   <h1>Bids</h1>
-  {{#each applications}}
+  {{#each formattedApplications}}
     Status: {{status}}<br>
-    Date: {{date}}
-    PropertyId: {{propertyId}}
-    <form class="bid-form">
-      <label for="bidAmount-{{_id}}"></label>
-      <input type="number" name="bidAmount" id="bidAmount-{{_id}}" class="bid-amount" value="{{bid}}" />
-      <button type="submit" class="btn btn-primary bid-submit">Bid</button>
-    </form>
+    Date: {{date}}<br>
+    Property: {{property.title}}<br>
+  <hr>
+  <form class="bid-form">
+    <label for="bidAmount-{{_id}}">Bid amount</label>
+    <div class="bid-wrapper">
+      <button class="btn btn-primary btn-lg minus">-10</button>
+      <input type="number" name="bidAmount" id="bidAmount-{{_id}}" class="bid-amount form-control" step="10" min="100" value="{{bid}}" />
+      <button class="btn btn-success btn-lg plus">+10</button>
+    </div>
+  </form>
   {{/each}}
+  <h2>Applications</h2>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <td>Name</td>
+      <td>Bid</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each formattedApplications}}
+    <tr class="{{#if isMe}}is-me{{/if}}">
+      <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a> <span class="label label-{{statusClass}}">{{status}}</span></td>
+      <td>{{bid}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+  </table>
 </template>

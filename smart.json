@@ -5,7 +5,8 @@
     "iron-router": {},
     "underscore-string-latest": {},
     "bootstrap-3": {},
-    "toastjs": {}
+    "collectionFS": {},
+    "cfs-s3": {}
   },
   "bower": {
     "bootstrap-ios7": {

@@ -1,3 +1,6 @@
+Toast.defaults.displayDuration = 800
+Toast.defaults.fadeOutDuration = 100
+
 Template.home.helpers
   isTenant: ->
     Meteor.user() && Meteor.user().username != 'Herr Landlord'
@@ -16,10 +19,6 @@ Template.shortlist.helpers
   readyForApplication: ->
 #    console.log(@)
     true #hax
-
-#Template.manageProperty.helpers
-#  currentVisitDates: ->
-#    VisitDates.findOne(propertyId: @.property._id)
 
 Template.singleVisit.helpers
   formattedDates: ->
@@ -60,10 +59,13 @@ Template.manageProperty.helpers
       switch visit.status
         when 'visitAccepted'
           visit.statusClass = 'success'
+          visit.status = 'Accepted'
         when 'visitDenied'
           visit.statusClass = 'danger'
+          visit.status = 'Denied'
         else
           visit.statusClass = 'info'
+          visit.status = 'Applying'
       visits.push(visit)
     )
     visits
@@ -73,10 +75,13 @@ Template.manageProperty.helpers
       switch application.status
         when 'bidAccepted'
           application.statusClass = 'success'
+          application.status = 'Bid accepted'
         when 'bidLow'
           application.statusClass = 'warning'
-        when 'bidDenied'
+          application.status = 'Bid not accepted'
+        when 'denied'
           application.statusClass = 'danger'
+          application.status = 'Denied'
         else
           application.statusClass = 'info'
       applications.push(application)
@@ -105,6 +110,13 @@ Template.manageProperty.events
       else
         Toast.warning err.reason
     return
+  'click .deny-bid': (e, t) ->
+    Meteor.call 'denyBid', @, (err, res) ->
+      unless err
+        Toast.success 'Bid too low'
+      else
+        Toast.warning err.reason
+    return
   'click .deny-application': (e, t) ->
     Meteor.call 'denyApplication', @, (err, res) ->
       unless err
@@ -112,9 +124,51 @@ Template.manageProperty.events
       else
         Toast.warning err.reason
     return
+  'click .set-visiting': (e, t) ->
+    Meteor.call 'setVisiting', @, (err, res) ->
+      unless err
+        Toast.success 'Set as visiting'
+      else
+        Toast.warning err.reason
+    return
+
+Template.bids.helpers
+  # not DRY but too late
+  formattedApplications: ->
+    applications = []
+    tenant = @.tenant
+    _.each(@.applications.fetch(), (application) ->
+      application.date = moment(application.date).format('DD/MM/YY hh:mm')
+      application.property = Properties.findOne(application.propertyId)
+      switch application.status
+        when 'bidAccepted'
+          application.statusClass = 'success'
+          application.status = 'Bid accepted'
+        when 'bidLow'
+          application.statusClass = 'warning'
+          application.status = 'Bid not accepted'
+        when 'denied'
+          application.statusClass = 'danger'
+          application.status = 'Denied'
+        else
+          application.statusClass = 'info'
+      application.isMe = true if application.tenantId = tenant._id
+      applications.push(application)
+    )
+    applications
 
 Template.bids.events
-  'submit .bid-form': (e, t) ->
+  'click .plus': (e, t) ->
+    e.preventDefault()
+    $bidAmount = $('#bidAmount-' + @._id)
+    $bidAmount.val(parseInt($bidAmount.val()) + 10)
+    $bidAmount.trigger('change')
+  'click .minus': (e, t) ->
+    e.preventDefault()
+    $bidAmount = $('#bidAmount-' + @._id)
+    $bidAmount.val(parseInt($bidAmount.val()) - 10)
+    $bidAmount.trigger('change')
+  'change .bid-amount': (e, t) ->
     e.preventDefault()
     @.bid = $('#bidAmount-' + @._id).val()
     Meteor.call 'submitBid', @, (err, res) ->
@@ -123,6 +177,16 @@ Template.bids.events
       else
         Toast.warning err.reason
 
-Template.shortlist.rendered = ->
-  #$('#element').attr('data-stellar-ratio', 1.1);
-  $.stellar();
+Template.myDetails.events
+  'change #photoWidget': (e, t) ->
+    tenant = @.tenant;
+    FS.Utility.eachFile e, (file) ->
+      Images.insert file, (err, fileObj) ->
+        console.log(err)
+        console.log(fileObj)
+        Meteor.setTimeout (->
+          $('#photo').val(fileObj.url())
+        ), 2000
+        return
+      return
+    return

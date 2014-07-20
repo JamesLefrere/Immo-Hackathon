@@ -3,11 +3,13 @@
   {{#each properties}}
     <h2>{{title}}</h2>
     <h3><a href="http://www.immobilienscout24.de/expose/printView.go?exposeId={{is24Id}}">View on ImmobilienScout24</a></h3>
+    <div class="stellar">
     {{#each stellar}}
       <div class="photo" data-stellar-background-ratio="0.5">
         <img src="{{src}}" />
       </div>
     {{/each}}
+    </div>
     <hr/>
     <p><strong>Rent (cold): </strong><span>{{coldRent}}</span></p>
     <p><strong>Nebenkosten: </strong><span>{{nebenkosten}}</span></p>

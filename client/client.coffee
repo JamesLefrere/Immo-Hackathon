@@ -195,11 +195,10 @@ Template.myDetails.events
 
 Template.shortlist.helpers
   stellar: ->
-    photos = []
+    stellar = []
     _.each @photos, (photo) ->
-      photos.push src: photo
-    photos
+      stellar.push({src: photo})
+    stellar
 
 Template.shortlist.rendered = ->
-  #$('#element').attr('data-stellar-ratio', 1.1);
-  $.stellar();
+  $('.stellar').stellar();

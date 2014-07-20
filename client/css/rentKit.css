@@ -5,6 +5,10 @@ html, body{
 }
 
 body {
+  min-height: 1500px;
+}
+
+body {
     background: url('/img/back2.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;

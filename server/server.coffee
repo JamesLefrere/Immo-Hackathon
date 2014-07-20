@@ -69,10 +69,10 @@ Meteor.startup ->
           new Date()
         ]
         photos: [
-          '/img/bcg_slide-1/jpg',
-          '/img/bcg_slide-2/jpg',
-          '/img/bcg_slide-3/jpg',
-          '/img/bcg_slide-4/jpg'
+          '/img/bcg_slide-1.jpg',
+          '/img/bcg_slide-2.jpg',
+          '/img/bcg_slide-3.jpg',
+          '/img/bcg_slide-4.jpg'
         ]
         slug: _.slugify('Apartment mit Dachterasse im Scheunenviertel | ERSTBEZUG')
         title: 'Apartment mit Dachterasse im Scheunenviertel | ERSTBEZUG'

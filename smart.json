@@ -4,7 +4,8 @@
     "autoform": {},
     "iron-router": {},
     "underscore-string-latest": {},
-    "bootstrap-3": {}
+    "bootstrap-3": {},
+    "toastjs": {}
   },
   "bower": {
     "bootstrap-ios7": {

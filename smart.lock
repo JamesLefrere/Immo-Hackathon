@@ -6,7 +6,8 @@
       "autoform": {},
       "iron-router": {},
       "underscore-string-latest": {},
-      "bootstrap-3": {}
+      "bootstrap-3": {},
+      "toastjs": {}
     },
     "packages": {
       "collection2": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v3.2.0-1",
         "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
+      },
+      "toastjs": {
+        "git": "https://github.com/srackham/toast.js.git",
+        "tag": "v2.0.6",
+        "commit": "a81915d9df2f432486ac6ce8d6981419119e7007"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",

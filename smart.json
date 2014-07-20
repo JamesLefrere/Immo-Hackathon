@@ -6,7 +6,8 @@
     "underscore-string-latest": {},
     "bootstrap-3": {},
     "collectionFS": {},
-    "cfs-s3": {}
+    "cfs-s3": {},
+    "jquery-waypoints2": {}
   },
   "bower": {
     "bootstrap-ios7": {

@@ -190,3 +190,7 @@ Template.myDetails.events
         return
       return
     return
+
+Template.shortlist.rendered = ->
+  #$('#element').attr('data-stellar-ratio', 1.1);
+  $.stellar();

@@ -21,7 +21,7 @@
       type: Number
       optional: true
     creditScore:
-      type: Number
+      type: String
       optional: true
     pets:
       type: String
@@ -72,3 +72,15 @@
     bid:
       type: Number
       optional: true
+
+@Images = new FS.Collection('images',
+  stores: [
+    new FS.Store.S3('s3',
+      region: 'eu-west-1' #optional in most cases
+      accessKeyId: 'AKIAITBJF6QYTSO3WS6Q' #required if environment variables are not set
+      secretAccessKey: '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' #required if environment variables are not set
+      bucket: 'meteor-jlefrere' #required
+    ),
+    new FS.Store.GridFS('gridfs')
+  ]
+)

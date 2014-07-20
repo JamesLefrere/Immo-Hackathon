@@ -17,7 +17,7 @@
     <tbody>
     {{#each formattedVisits}}
       <tr>
-        <td>{{tenantName}}</td>
+        <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a> <span class="label label-{{statusClass}}">{{status}}</span></td>
         <td>{{date}}</td>
         <td>
           <button type="button" class="btn btn-success btn-s btn-block accept-visit">Accept</button>
@@ -40,7 +40,7 @@
     <tbody>
     {{#each formattedApplications}}
       <tr>
-        <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a></td>
+        <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a> <span class="label label-{{statusClass}}">{{status}}</span></td>
         <td>{{bid}}</td>
         <td>
           <button type="button" class="btn btn-success btn-s btn-block accept-application">Accept</button>

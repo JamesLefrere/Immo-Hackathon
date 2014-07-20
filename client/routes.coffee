@@ -5,10 +5,11 @@ Router.map ->
     path: '/'
     template: 'home'
 
-
   @route 'my-details',
     path: '/my-details'
     template: 'myDetails'
+    data: ->
+      tenant: Tenants.findOne(userId: Meteor.userId())
 
   @route 'shortlist',
     path: '/shortlist'
@@ -38,8 +39,21 @@ Router.map ->
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
       property = Properties.findOne(_id: @.params._id)
+      application = Applications.findOne(tenantId: tenant._id)
       tenant: tenant
       property: property
+      application: application
+
+  @route 'singleTenant',
+    path: '/tenant/:_id'
+    template: 'singleTenant'
+    data: ->
+      tenant = Tenants.findOne(_id: @.params._id)
+      application = Applications.findOne(tenantId: @.params._id)
+      user = Meteor.users.findOne(_id: tenant.userId) if tenant
+      tenant: tenant
+      application: application
+      user: user
 
   @route 'bids',
     path: '/bids'
@@ -64,11 +78,15 @@ Router.map ->
       applications = Applications.find
         propertyId: @.params._id
         status: $in: ['visiting', 'bidAccepted', 'bidLow', 'denied']
+      ,
+        sort:
+          date: -1
       visits = Applications.find(
         propertyId: @params._id
         status: $in: ['applyingForVisit', 'visitAccepted', 'visitDenied']
       ,
         sort:
+          bid: -1
           date: -1
       )
       property: property

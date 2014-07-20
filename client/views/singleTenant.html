@@ -1,0 +1,24 @@
+<template name="singleTenant">
+  <h1>Tenant</h1>
+  <h2>{{user.username}}</h2>
+  {{#each user.emails}}
+    <h3><a href="mailto:{{address}}">{{address}}</a></h3>
+  {{/each}}
+  {{#with tenant}}
+  <hr/>
+  <img src="{{photo}}" />
+  <hr/>
+  <p>
+    <strong>Occupation: </strong>
+    <span>{{occupation}}</span>
+  </p>
+  <p>
+    <strong>Income: </strong>
+    <span>{{income}}</span>
+  </p>
+  <p>
+    <strong>Credit score: </strong>
+    <span>{{creditScore}}</span>
+  </p>
+  {{/with}}
+</template>

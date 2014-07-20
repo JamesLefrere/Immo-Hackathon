@@ -1,6 +1,5 @@
 <template name="shortlist">
   <div class="shortlist">
-    {{#each properties}}
     <div id="navigation">
       <ul id="navBar">
         <li data-slide="1" class="current"></li>
@@ -9,26 +8,32 @@
         <li data-slide="4"></li>
       </ul>
     </div>
+    {{#each properties}}
     <div class="slide photo prop1" id="slide1" data-slide="1">
-      <div data-stellar-ratio="0.7" style="top: 70%; left 5%; max-width: 80%" class="message">
+      <div data-stellar-ratio="0.6" data-stellar-vertical-offset="-250" class="message">
         <h2>{{title}}</h2>
         <h3><a href="http://www.immobilienscout24.de/expose/printView.go?exposeId={{is24Id}}">View on ImmobilienScout24</a></h3>
-        <h4>{{address}}</h4>
       </div>
-      <div data-stellar-ratio="0.9"  style="top: 10%; left 5%; max-width: 80%" class="btn2"></div>
+      <div data-stellar-ratio="0.9"  style="top: 10%; left 5%; max-width: 80%" class="btn2">
+        <h2 style="background-color: transparent ">Apply now</h2>
+      </div>
     </div>
-    <div class="slide photo prop2" id="slide2" data-slide="2" >
-      <p><strong>Rent (cold): </strong><span>{{coldRent}}</span></p>
-      <p><strong>Nebenkosten: </strong><span>{{nebenkosten}}</span></p>
+    <div class="slide photo prop2" id="slide2" data-slide="2">
+      <div data-stellar-ratio="0.6" data-stellar-vertical-offset="-250" class="message">
+        <p><strong>Rent (cold): </strong><span>{{coldRent}}</span></p>
+        <p><strong>Nebenkosten: </strong><span>{{nebenkosten}}</span></p>
+      </div>
       <a class="button" data-slide="3" title=""></a>
     </div>
     <div class="slide photo prop3" id="slide3" data-slide="3">
-      {{{description}}}
+      <div data-stellar-ratio="0.6" data-stellar-vertical-offset="-250" class="message">
+        {{{description}}}
+      </div>
       <a class="button" data-slide="4" title=""></a>
     </div>
     <div class="slide photo prop4" id="slide4" data-slide="4">
       <a class="button last" data-slide="1" title=""></a>
-     </div>
+    </div>
     {{/each}}
   </div>
 </template>

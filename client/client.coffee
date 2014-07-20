@@ -12,7 +12,7 @@ Template.home.helpers
 Template.home.rendered = ->
   if Meteor.user() && Meteor.user().username == 'Herr Landlord'
     Router.go('/manage-properties')
-    
+
 Template.nav.helpers
   isTenant: ->
     Meteor.user() && Meteor.user().username != 'Herr Landlord'

@@ -132,6 +132,31 @@ Template.manageProperty.events
         Toast.warning err.reason
     return
 
+Template.bids.helpers
+  # not DRY but too late
+  formattedApplications: ->
+    applications = []
+    tenant = @.tenant
+    _.each(@.applications.fetch(), (application) ->
+      application.date = moment(application.date).format('DD/MM/YY hh:mm')
+      application.property = Properties.findOne(application.propertyId)
+      switch application.status
+        when 'bidAccepted'
+          application.statusClass = 'success'
+          application.status = 'Bid accepted'
+        when 'bidLow'
+          application.statusClass = 'warning'
+          application.status = 'Bid not accepted'
+        when 'denied'
+          application.statusClass = 'danger'
+          application.status = 'Denied'
+        else
+          application.statusClass = 'info'
+      application.isMe = true if application.tenantId = tenant._id
+      applications.push(application)
+    )
+    applications
+
 Template.bids.events
   'click .plus': (e, t) ->
     e.preventDefault()

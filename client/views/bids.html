@@ -17,12 +17,15 @@
     .minus {
       float: left;
     }
+    .is-me {
+      font-weight: bold
+    }
   </style>
   <h1>Bids</h1>
-  {{#each applications}}
+  {{#each formattedApplications}}
     Status: {{status}}<br>
     Date: {{date}}<br>
-    PropertyId: {{propertyId}}<br>
+    Property: {{property.title}}<br>
   <hr>
   <form class="bid-form">
     <label for="bidAmount-{{_id}}">Bid amount</label>
@@ -33,4 +36,21 @@
     </div>
   </form>
   {{/each}}
+  <h2>Applications</h2>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <td>Name</td>
+      <td>Bid</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each formattedApplications}}
+    <tr class="{{#if isMe}}is-me{{/if}}">
+      <td><a href="/tenant/{{tenantId}}">{{tenantName}}</a> <span class="label label-{{statusClass}}">{{status}}</span></td>
+      <td>{{bid}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+  </table>
 </template>

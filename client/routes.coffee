@@ -60,9 +60,12 @@ Router.map ->
     template: 'bids'
     data: ->
       tenant = Tenants.findOne(userId: Meteor.userId())
-      applications = Applications.find(tenantId: tenant._id) if tenant
+      applications = Applications.find() #not really correct, just one for now though
+      propertyIds = _.pluck(applications.fetch(), 'propertyId') if applications
+      properties = Properties.find(_id: $in: propertyIds) if propertyIds
       tenant: tenant
       applications: applications
+      properties: properties
 
   @route 'manageProperties',
     path: 'manage-properties'

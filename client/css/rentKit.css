@@ -177,17 +177,7 @@ body {
 #slide4{
 	background-color: #775c93;
 }
-h1{
-	font-family: Verdana, Geneva, sans-serif;
-	color: rgba(0,0,0,0.3);
-	font-size: 3em;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-left: -235px;
-	margin-top: -59px;
-	z-index: 1;
-}
+
 #ball1{
 	width: 200px;
 	height: 200px;

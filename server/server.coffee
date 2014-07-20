@@ -109,7 +109,7 @@ Meteor.startup ->
       email: 'jane@example.com'
 
 Accounts.onCreateUser (options, user) ->
-  return if (user.username == 'Herr Landlord')
+  return user if (user.username == 'Herr Landlord')
   properties = Properties.find().fetch()
   propertyIds = _.pluck(properties, '_id').join(',')
   Tenants.insert

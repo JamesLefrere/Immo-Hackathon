@@ -9,6 +9,10 @@ Template.home.helpers
   createdAccount: ->
     Tenants.find(userId: Meteor.userId()).fetch().length > 0
 
+Template.home.rendered = ->
+  if Meteor.user() && Meteor.user().username == 'Herr Landlord'
+    Router.go('/manage-properties')
+    
 Template.nav.helpers
   isTenant: ->
     Meteor.user() && Meteor.user().username != 'Herr Landlord'

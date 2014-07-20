@@ -199,14 +199,14 @@ main {
 	}
 
 /* Slide 1 */
-#slide-1 .bcg {background-image:url('../img/bcg_slide-1.jpg')}
+#slide-1 .bcg {background-image:url('/img/bcg_slide-1.jpg')}
 #slide-1 .hsContent {
 	bottom: 200px;
 	top: 70%;
 }
 
 /* Slide 2 */
-#slide-2 .bcg {background-image:url('../img/bcg_slide-2.jpg')}
+#slide-2 .bcg {background-image:url('/img/bcg_slide-2.jpg')}
 #slide-2 .hsContent {
 	top: auto;
 }
@@ -216,7 +216,7 @@ main {
 }
 
 /* Slide 3 */
-#slide-3 .bcg {background-image:url('../img/bcg_slide-3.jpg')}
+#slide-3 .bcg {background-image:url('/img/bcg_slide-3.jpg')}
 #slide-3 .hsContent {
     ppp-position: fixed;
 
@@ -232,7 +232,7 @@ main {
 	}
 
 /* Slide 4 */
-#slide-4 .bcg {background-image:url('../img/bcg_slide-4.jpg')}
+#slide-4 .bcg {background-image:url('/img/bcg_slide-4.jpg')}
 #slide-4 .hsContent {
 	position: fixed;
 	top: 250px;
@@ -433,7 +433,13 @@ main {
     }
 }
 
+/***
+Custom
+***/
 
+body {
+    background-image:url('/img/bcg_slide-1.jpg')    
+}
 
 .btn2 {
     xxbox-shadow: 0px 0px 22px 0px #bbdaf7; 

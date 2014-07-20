@@ -4,7 +4,9 @@
     "autoform": {},
     "iron-router": {},
     "underscore-string-latest": {},
-    "bootstrap-3": {}
+    "bootstrap-3": {},
+    "collectionFS": {},
+    "cfs-s3": {}
   },
   "bower": {
     "bootstrap-ios7": {
